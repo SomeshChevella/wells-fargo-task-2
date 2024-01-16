@@ -19,21 +19,22 @@ public class Security {
     @Column(nullable = false)
     private BigDecimal purchasePrice;
     @Column(nullable = false)
-    private int quantity;
-    @Column(nullable = false)
-    private long portfolioId;
+    private float quantity;
+    @ManyToOne
+    @JoinColumn(name = "portfolioId", nullable = false)
+    private Portfolio portfolio;
 
     protected Security(){
 
     }
     public Security(String securityName, String categoryType,
-                    Date purchaseDate, BigDecimal purchasePrice, int quantity, long portfolioId){
+                    Date purchaseDate, BigDecimal purchasePrice, float quantity, Portfolio portfolio){
         this.securityName=securityName;
         this.categoryType = categoryType;
         this.purchaseDate= purchaseDate;
         this.purchasePrice=purchasePrice;
         this.quantity = quantity;
-        this.portfolioId= portfolioId;
+        this.portfolio= portfolio;
 
     }
 
@@ -73,19 +74,19 @@ public class Security {
         this.purchasePrice = purchasePrice;
     }
 
-    public int getQuantity() {
+    public float getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(float quantity) {
         this.quantity = quantity;
     }
 
-    public long getPortfolioId() {
-        return portfolioId;
+    public Portfolio getPortfolioId() {
+        return portfolio;
     }
 
-    public void setPortfolioId(long portfolioId) {
-        this.portfolioId = portfolioId;
+    public void setPortfolioId(Portfolio portfolio) {
+        this.portfolio = portfolio;
     }
 }
